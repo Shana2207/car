@@ -1,0 +1,13 @@
+.content{
+    padding: 50px;
+    margin: auto;
+}
+.bloques{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: center ;
+}
+.card-text{
+    text-align: center;
+}

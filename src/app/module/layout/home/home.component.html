@@ -1,0 +1,26 @@
+<app-main>
+    <div class="input-group">
+        <input class="form-control" placeholder="yyyy-mm-dd"
+            name="dp"  ngbDatepicker #d="ngbDatepicker" type="date" [(ngModel)]="llen.date">
+    </div>
+    <div>
+        <div>
+            <form class="form-registro" [formGroup]="llenarForm">
+                <div class="registro">                    
+                    <div class="">
+                        <div class="llenar">
+                            <div class="form-group">
+                                <div class="datos">
+                                    <input type="text" placeholder="KI*" [(ngModel)]="llen.ki" class="form-control"  formControlName="ki" required> 
+                                </div>
+                            </div>
+                            <div class="botones">
+                                <button type="" class="btn btn-lg btn-outline-primary" (click)="agregar()" type="button">Agregar</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</app-main>

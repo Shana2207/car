@@ -1,0 +1,36 @@
+<div class="content">
+  <div class="bloques">
+    <div class="card text-white bg-info mb-4" style="width: 20rem;">
+      <div class="card-header"><h5 class="card-title">KM Recorridos</h5></div>
+      <div class="card-body">
+        <p class="card-text">recup datos</p>
+      </div>
+    </div>
+    <div class="card text-white bg-info mb-4" style="width: 20rem;">
+        <div class="card-header"><h5 class="card-title">Pago Semanal</h5></div>
+        <div class="card-body">
+          <p class="card-text">recup datos pago</p>
+        </div>
+    </div>
+  </div>
+  
+  
+  <p>
+    <button type="button" class="btn btn-outline-primary" (click)="collapse.toggle()" [attr.aria-expanded]="!isCollapsed" aria-controls="collapseExample">
+      <h2>Detalles de la semana</h2>
+    </button>
+  </p>
+  <div #collapse="ngbCollapse" [(ngbCollapse)]="isCollapsed">
+    <div class="card" *ngFor="let llenar of LlenarList">
+      <div class="card-body">
+        <p> {{llenar.payload.doc.id}} </p>
+        <p>{{ llenar.payload.doc.data().date?.day }} / {{ llenar.payload.doc.data().date?.month }} / {{ llenar.payload.doc.data().date?.year }}</p> <br>
+        <p> {{ llenar.payload.doc.data().ki }} </p> <br>
+        <p> precio </p> <br>
+        <p>KF: {{ llenar.payload.doc.data().kf }}</p>
+        <p>recorrido total:</p>
+      </div>
+      <a routerLink="/edit-report" (click)="getSendId(llenar.payload.doc.id)" class="read-more">Editar</a>
+    </div>
+  </div>
+</div>
