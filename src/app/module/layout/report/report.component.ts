@@ -18,34 +18,24 @@ export class ReportComponent implements OnInit {
 
    
   public isCollapsed = false;
-  navigationExtras: NavigationExtras = {
-    state: {
-      value: null
-    }
-  };
-  constructor(private formBuilder: FormBuilder, 
-              private llenarService: LlenarService,
-              private router: Router) { }
+
+  constructor(private llenarService: LlenarService) { }
+
+  llen:Llenar = {
+    id:'',
+        date: '',
+        ki:'',
+        kf:'',
+      coments: ''}
 
   ngOnInit(): void {
     this.getLlenarList();
   }
-
-  llen:Llenar = {
-    date: '',
-    ki:'',
-    kf:''
-  }
-
   LlenarList: any;
-  getLlenarList = () => 
-    this.llenarService
-    .getLlenarList()
-    .subscribe(res => (this.LlenarList = res));
-
-
-  getSendId(idDoc: any): void{
-    console.log(idDoc);
-  }
-
+    getLlenarList = () => 
+      this.llenarService
+      .getLlenarList()
+      .subscribe(res => (this.LlenarList = res));
 }
+
+

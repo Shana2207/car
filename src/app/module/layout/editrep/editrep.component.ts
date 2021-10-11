@@ -11,37 +11,46 @@ import { LlenarService } from '../llenar/services/llenar.service';
 })
 export class EditrepComponent implements OnInit {
 
-  edit = null;
+  
   editForm!: FormGroup;
-  constructor(private formBuilder: FormBuilder, private route: ActivatedRoute,  private llenarService: LlenarService) { 
-    this.initForm();
-  }
-
-  ngOnInit():void{ 
-  }
-
-  llen:Llenar = {
-    date: '',
-    ki:'',
-    kf:''
-  }
-
-  onSave():void{
-    /*
-    this.llenarService.getUpdateList(this.llen);*/
-    console.log(this.editForm.value);
-  }
-
-
-  private initForm(): void {
+  editRef: any
+  constructor(private formBuilder: FormBuilder, 
+              private route: ActivatedRoute,  
+              private llenarService: LlenarService,
+              public router: Router) { 
     this.editForm = this.formBuilder.group({
+      date: [ '' , [
+        Validators.required]],
       ki: [ '' , [
         Validators.required]],
       kf: ['', [
         Validators.required]],
       coments: ['', [
         Validators.required]]
-    });
+    })
   }
+
+  ngOnInit():void{ 
+    const id = this.route.snapshot.paramMap.get('id');
+    this.llenarService.getList(id).subscribe(res => {
+      this.editRef = res;
+      this.editForm = this.formBuilder.group({
+        date: [this.editRef.date],
+        ki: [this.editRef.ki],
+        kf: [this.editRef.kf],
+        coments: [this.editRef.coments],
+      })
+    })
+  }
+  
+  onSave(){
+    const id = this.route.snapshot.paramMap.get('id');
+    this.llenarService.getUpdateList(this.editForm.value, id);
+    this.router.navigate(['report']);
+  }
+
+
+    
+  
 
 }

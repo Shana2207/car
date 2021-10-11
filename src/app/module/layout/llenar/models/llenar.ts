@@ -1,6 +1,7 @@
 export interface Llenar {
-    id?: string,
-    date:string,
+    id: string,
+    date: string,
     ki: string,
-    kf: string
+    kf: string,
+    coments: string
 }

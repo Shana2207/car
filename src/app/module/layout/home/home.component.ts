@@ -4,32 +4,37 @@ import { Llenar } from '../llenar/models/llenar';
 import { LlenarService } from '../llenar/services/llenar.service';
 
 import {NgbDateStruct} from '@ng-bootstrap/ng-bootstrap';
-
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
+ 
+  public llenarForm: FormGroup;
 
-  constructor(private formBuilder: FormBuilder, private llenarService: LlenarService) { }
+  constructor(
+    public formBuilder: FormBuilder, 
+    public llenarService: LlenarService,
+    public route: Router) { 
+      this.llenarForm = this.formBuilder.group({
+        date: [null, [
+          Validators.required]],
+        ki: [null, [
+          Validators.required]],
+        kf: [null, [
+          Validators.required]]
+      })
+  }
 
   ngOnInit(): void {
     
   }
 
-  llenarForm = this.formBuilder.group({
-    ki: [null, [
-      Validators.required]]
-  });
-
-  llen:Llenar = {
-    date: '',
-    ki:'',
-    kf:''
-  }
-
+  
   agregar(){
-    this.llenarService.addLlenar(this.llen);
+    this.llenarService.addLlenar(this.llenarForm.value);
+    this.route.navigate(['report'])
   }
 }

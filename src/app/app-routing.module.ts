@@ -7,7 +7,7 @@ import { ReportComponent } from './module/layout/report/report.component';
 const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'report', component: ReportComponent },
-  { path: 'edit-report', component: EditrepComponent },
+  { path: 'edit-report/:id', component: EditrepComponent },
 ];
 
 @NgModule({
