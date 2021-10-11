@@ -11,26 +11,40 @@ export class LlenarService {
   constructor(private db: AngularFirestore) { }
 
   addLlenar(llenar: Llenar){
-    this.db.collection('llenar-ki').doc().set({
-      "date":llenar.date,
-      "ki":llenar.ki,
-      "kf":llenar.kf
-    }).then(resp => {
-      console.log(resp);
-    }).catch((error) => {console.log(error);
+    return new Promise<any>((resolve, reject) =>{
+      this.db
+        .collection('llenar-ki')
+        .add(llenar)
+        .then(response => { console.log(response) }, error => reject(error));
     });
+  }
+
+  getList(id: any) { 
+    return this.db
+    .collection('llenar-ki')
+    .doc(id)
+    .valueChanges();
   }
 
   getLlenarList() { 
     return this.db
-    .collection("llenar-ki")
+    .collection('llenar-ki')
     .snapshotChanges();
   }
 
 
-  getUpdateList(id: string, data: any): Promise<void> {
-    return this.db.collection('llenar-ki').doc(id).update(data);
+  getUpdateList(llen: Llenar, id: any){
+    return this.db
+    .collection('llenar-ki')
+    .doc(id)
+    .update({
+      date: llen.date,
+      ki: llen.ki,
+      kf: llen.kf,
+      coments: llen.coments
+    })
   }
+
 
  
 
