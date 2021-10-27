@@ -6,6 +6,8 @@ import { Router, NavigationExtras } from '@angular/router';
 import { Llenar } from '../llenar/models/llenar';
 import { LlenarService } from '../llenar/services/llenar.service';
 
+import { DatePipe } from '@angular/common';
+
 @Component({
   selector: 'app-report',
   templateUrl: './report.component.html',
@@ -17,9 +19,10 @@ export class ReportComponent implements OnInit {
   llenar!: Llenar[];
 
    
-  public isCollapsed = false;
-
-  constructor(private llenarService: LlenarService) { }
+  public isCollapsed = true;
+  myDate = new Date();
+  date: Date | undefined;
+  constructor(private llenarService: LlenarService, public datepipe: DatePipe) { }
 
   llen:Llenar = {
     id:'',
@@ -36,6 +39,15 @@ export class ReportComponent implements OnInit {
       this.llenarService
       .getLlenarList()
       .subscribe(res => (this.LlenarList = res));
+
+  myFunction(){
+    this.date=new Date();
+    let latest_date =this.datepipe.transform(this.date, 'dd-MM-YYYY');
+  }
+      
+  
+          
+      
 }
 
 

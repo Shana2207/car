@@ -45,7 +45,14 @@ export class LlenarService {
     })
   }
 
-
+  addLlenarSemana(llenar: Llenar){
+    return new Promise<any>((resolve, reject) =>{
+      this.db
+        .collection('semanas')
+        .add(llenar)
+        .then(response => { console.log(response) }, error => reject(error));
+    });
+  }
  
 
 }
