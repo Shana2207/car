@@ -10,6 +10,7 @@ import { ReportComponent } from './report/report.component';
 import { NgbModal, NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { MainComponent } from './main/main.component';
 import { EditrepComponent } from './editrep/editrep.component';
+import { SemanaComponent } from './semana/semana.component';
 
 
 @NgModule({
@@ -17,7 +18,8 @@ import { EditrepComponent } from './editrep/editrep.component';
     HomeComponent,
     ReportComponent,
     MainComponent,
-    EditrepComponent
+    EditrepComponent,
+    SemanaComponent
   ],
   imports: [
     CommonModule,
