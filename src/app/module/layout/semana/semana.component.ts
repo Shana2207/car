@@ -15,14 +15,24 @@ import { doc, setDoc } from "firebase/firestore";
 })
 export class SemanaComponent implements OnInit {
 
-  constructor(private llenarService: LlenarService) { }
+  constructor(public formBuilder: FormBuilder, private llenarService: LlenarService, public route: Router) { 
+    this.llenarForm = this.formBuilder.group({
+      ki: [null, [
+        Validators.required]]
+    })
+  }
 
   ngOnInit(): void {
   }
+  public llenarForm: FormGroup;
+  
+  
 
   crear():void{
     for(let i= 42; i<=44; i++){
-      
+      this.llenarService.addLlenar(this.llenarForm.value);
+      this.route.navigate(['report'])
+      console.log('entro a semana');
     }
   }
 
