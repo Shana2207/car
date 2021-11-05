@@ -1,8 +1,25 @@
 <app-main>
 <p>semana works!</p>
-<button (click)="crear">crear Semana</button>
+<button (click)="crear()">crear Semana</button>
+<div class="btn-group btn-group-toggle" (click)="crear()">
+    <label class="btn-primary" ngbButtonLabel>
+       Semana X
+    </label>
+</div>
 
-
+<form class="form-registro" [formGroup]="llenarForm">
+    <div class="registro">                    
+        <div class="">
+            <div class="llenar">
+                <div class="form-group">
+                    <div class="datos">
+                        <input type="text" placeholder="KI*" class="form-control"  formControlName="ki" required> 
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
 
 
     
