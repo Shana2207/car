@@ -26,6 +26,20 @@ export class LlenarService {
     .valueChanges();
   }
 
+  addKm(semana: any, dia: any, objeto: any){
+    console.log(semana, dia, objeto);
+    const data = ({
+      kmInicial : objeto.kmInicial,
+      kmFinal : objeto.kmFinal,
+      comentarios: objeto.comentarios,
+      fecha : objeto.fecha,
+      precio: objeto.precio,
+      kmRecorido:objeto.kmFinal - objeto.kmInicial
+    });
+    const res =this.db.collection('kilometraje').doc('semanas').collection(`${semana}`).doc(`${dia}`).set(data);
+    return res;
+  }
+  
   getLlenarList() { 
     return this.db
     .collection('llenar-ki')

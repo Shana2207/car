@@ -15,7 +15,18 @@ import { doc, setDoc } from "firebase/firestore";
 })
 export class SemanaComponent implements OnInit {
 
-  constructor(public formBuilder: FormBuilder, private llenarService: LlenarService, public route: Router) { 
+  semana  = 4;
+  dia = 3;
+  objeto = {
+    kmInicial: 0,
+    kmFinal: 0,
+    fecha: '0',
+    comentarios: '',
+    precio: 0,
+    kmRecorido : 0
+  }
+
+  constructor(public formBuilder: FormBuilder, private llenarService: LlenarService, public route: Router) {
     this.llenarForm = this.formBuilder.group({
       ki: [null, [
         Validators.required]]
@@ -25,15 +36,33 @@ export class SemanaComponent implements OnInit {
   ngOnInit(): void {
   }
   public llenarForm: FormGroup;
-  
-  
 
-  crear():void{
-    for(let i= 42; i<=44; i++){
-      this.llenarService.addLlenar(this.llenarForm.value);
-      this.route.navigate(['report'])
-      console.log('entro a semana');
+
+
+
+  crear(): void {
+    // for(let i= 42; i<=44; i++){
+    //   this.llenarService.addLlenar(this.llenarForm.value);
+    //   this.route.navigate(['report'])
+    //   console.log('entro a semana');
+    // }
+    for(let i = 0; 1 <=3; i++){
+      
     }
+
+    this.dia = this.dia +1;
+    
+    // this.objeto = {
+    //   kmInicial: 0,
+    //   kmFinal: 500,
+    //   fecha: '05-11-2021',
+    //   comentarios: 'comentarios',
+    //   precio: 200
+    // }
+    this.llenarService.addKm(this.semana, this.dia, this.objeto).then((res: any) => {
+      console.log(res);
+
+    });
   }
 
 }
